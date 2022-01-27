@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Black List in Dialogs
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Why VK does not make this?
 // @author       mihannnik
 // @match        https://vk.com/im?*
