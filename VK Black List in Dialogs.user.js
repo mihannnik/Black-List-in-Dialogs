@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Black List in Dialogs
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.2.1
 // @description  Why VK does not make this?
 // @author       mihannnik
 // @match        https://vk.com/im?*
@@ -129,7 +129,7 @@ function toggleActivity()
 }
 function addNewPersone()
 {
-    var result = prompt("Введите идентификатор\\enter identifier",'');
+    var result = prompt("Введите Имя Фомилию как в диалоге!\\enter name and surname as in dialog!",'');
     if(result != null && result != '')
     {
         if(listOfIgnore.indexOf(result) == -1)
