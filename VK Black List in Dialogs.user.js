@@ -29,7 +29,11 @@ var observerMenu = new MutationObserver(createButton);
     while(chat_container == null)
 
     loadMessagesfromStart();
-
+    if(GM_getValue('Enabled') != true || GM_getValue('Enabled') != false)
+    {
+        GM_setValue('Enabled', true);
+    }
+    
     console.log("Enabled? " + GM_getValue('Enabled'));
     if(GM_getValue('Enabled') == true)
     {
