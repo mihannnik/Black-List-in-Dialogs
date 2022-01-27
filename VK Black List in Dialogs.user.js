@@ -5,7 +5,7 @@
 // @description  Why VK does not make this?
 // @author       mihannnik
 // @match        https://vk.com/im?*
-// @icon        https://vk.com/images/iconToggleActivitys/faviconToggleActivitys/fav_logo.ico?6
+// @icon         https://vk.com/images/icons/favicons/fav_logo.ico?6
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @run-at       document-end
