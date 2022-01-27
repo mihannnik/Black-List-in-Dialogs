@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Black List in Dialogs
 // @namespace    http://tampermonkey.net/
-// @version      1.2.2
+// @version      1.3
 // @description  Why VK does not make this?
 // @author       mihannnik
 // @match        https://vk.com/im?*
@@ -19,6 +19,7 @@ const config = {
 var listOfIgnore = [];
 var chat_container;
 var lastChecked;
+var checkMessage;
 const observer = new MutationObserver(Mutated);
 (function() {
     'use strict';
@@ -29,6 +30,15 @@ const observer = new MutationObserver(Mutated);
     while(chat_container == null)
 
     listOfIgnore = JSON.parse(GM_getValue("listOfIgnore", '[]'));
+
+    if(GM_getValue('CheckType', false) == true)
+    {
+        checkMessage = function(currentMessage) { if(currentMessage.querySelector('[class="im-mess-stack--lnk"]') != null && listOfIgnore.indexOf(currentMessage.querySelector('[class="im-mess-stack--lnk"]').firstChild.textContent) != -1){currentMessage.innerText = "";console.log("find!");}};
+    }
+    else
+    {
+        checkMessage = function(currentMessage) {if(currentMessage.querySelector('[class="im-mess-stack--lnk"]') != null && listOfIgnore.indexOf(currentMessage.querySelector('[class="im-mess-stack--lnk"]').href) != -1){currentMessage.innerText = "";console.log("find!");}};
+    }
 
     loadMessagesfromStart();
     if(GM_getValue('Enabled') == undefined)
@@ -62,14 +72,15 @@ function loadMessagesfromStart()
     }
     lastChecked = messages[0];
 }
-function checkMessage(currentMessage)
-{
-    if(currentMessage.querySelector('[class="im-mess-stack--lnk"]') != null && listOfIgnore.indexOf(currentMessage.querySelector('[class="im-mess-stack--lnk"]').firstChild.textContent) != -1)
-    {
-        currentMessage.innerText = '';
-        console.log("find!");
-    }
-}
+// function checkMessage(currentMessage)
+// {
+//     if(currentMessage.querySelector('[class="im-mess-stack--lnk"]') != null && listOfIgnore.indexOf(currentMessage.querySelector('[class="im-mess-stack--lnk"]').href.textContent) != -1)
+//     {
+//         currentMessage.innerText = '';
+//         console.log("find!");
+//     }
+// }
+
 function Mutated(mutationsList, observer) {
     var messages = chat_container.getElementsByClassName('im-mess-stack _im_mess_stack');
     for (let mutation of mutationsList) {
