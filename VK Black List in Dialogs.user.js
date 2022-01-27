@@ -84,7 +84,6 @@ function Mutated(mutationsList, observer) {
 }
 function createButton()
 {
-    observerMenu.disconnect();
     var menu = document.getElementById('ui_rmenu_all');
     var icon = document.createElement('div');
     icon.id = 'im_mark_stop_st';
